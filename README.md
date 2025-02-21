@@ -40,7 +40,7 @@
 [сервисный аккаунт](backend/service_account.tf)
 2. Подготовьте [backend](https://developer.hashicorp.com/terraform/language/backend) для Terraform:  
    а. Рекомендуемый вариант: S3 bucket в созданном ЯО аккаунте(создание бакета через TF)   
-[бакет](backend/object-storage.tf)
+[бакет](backend/object-storage.tf)  
    б. Альтернативный вариант:  [Terraform Cloud](https://app.terraform.io/)  
 ```  
 #инициализация
