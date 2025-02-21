@@ -2,18 +2,18 @@ resource "yandex_vpc_network" "dev-vpc" {
   name = var.vpc_name
 }
 
-# resource "yandex_vpc_subnet" "public" {
-#   name           = var.public-subnet_name
-#   zone           = var.default_zone
-#   network_id     = yandex_vpc_network.dev-vpc.id
-#   v4_cidr_blocks = var.public_cidr
-# }
-
-resource "yandex_vpc_subnet" "private" {
-  name           = var.private-subnet_name
+resource "yandex_vpc_subnet" "subnet-a" {
+  name           = var.subnet-a_name
   zone           = var.default_zone
   network_id     = yandex_vpc_network.dev-vpc.id
-  v4_cidr_blocks = var.private_cidr
+  v4_cidr_blocks = var.subnet-a_cidr
+}
+
+resource "yandex_vpc_subnet" "subnet-b" {
+  name           = var.subnet-b_name
+  zone           = var.zone
+  network_id     = yandex_vpc_network.dev-vpc.id
+  v4_cidr_blocks = var.subnet-b_cidr
   # route_table_id = yandex_vpc_route_table.dev-rt.id
 }
 

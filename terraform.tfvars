@@ -1,7 +1,7 @@
-ssh_public_key   = "/home/miroshnichenko_an/.ssh/id_rsa.pub"
-username         = "miroshnichenko_an"
+vpc_name = "dev_vpc"
 
-# vpc_name = "dev_vpc"
+# ssh_public_key   = "/home/miroshnichenko_an/.ssh/id_rsa.pub"
+# username         = "miroshnichenko_an"
 
 # vms_resources = {
 #      nat ={
@@ -17,15 +17,6 @@ username         = "miroshnichenko_an"
 # }
 
 # vm-nat_ip_address = "192.168.10.254"
-
-# // Object-storage vars
-# bucket_name = "miroshnichenko-15-02"
-# max_size-bucket = 2048576
-# anonymous_access = {
-#   read        = true
-#   list        = false
-#   config_read = false
-# }
 
 # storage_object = {
 #   key         = "elt.jpg"
@@ -49,6 +40,3 @@ username         = "miroshnichenko_an"
 #   "max_deleting"    = 2
 # }
 
-# // KMS vars
-# kms-key_name = "key-0"
-# algorithm    = "AES_256"

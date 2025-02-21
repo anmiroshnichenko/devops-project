@@ -25,51 +25,50 @@ variable "zone" {
   default     = "ru-central1-b"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
+//=============================================================================
+// Network vars
+variable "vpc_name" {
+  type        = string  
+  description = "VPC network & subnet name"
+}
 
-variable "environment" {
+variable "subnet-a_name" {
   type        = string
-  default     = "dev"  
-  description = "Environment for virtual machine names"
+  default     = "subnet-a" 
+  description = "VPC network & subnet name"
 }
 
-variable username {
-  type = string
-}
-
-variable ssh_public_key {
+variable "subnet-b_name" {
   type        = string
-  description = "Location of SSH public key."
+  default     = "subnet-b" 
+  description = "VPC network & subnet name"
 }
 
+variable "subnet-a_cidr" {
+  type        = list(string)
+  default     = ["192.168.10.0/24"]
+  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+}
 
-# ### Network vars
-# variable "vpc_name" {
-#   type        = string  
-#   description = "VPC network & subnet name"
-# }
-
-# variable "public-subnet_name" {
+variable "subnet-b_cidr" {
+  type        = list(string)
+  default     = ["192.168.20.0/24"]
+  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+}
+//===============================================================================
+# variable "environment" {
 #   type        = string
-#   default     = "public" 
-#   description = "VPC network & subnet name"
+#   default     = "dev"  
+#   description = "Environment for virtual machine names"
 # }
 
-# variable "private-subnet_name" {
+# variable username {
+#   type = string
+# }
+
+# variable ssh_public_key {
 #   type        = string
-#   default     = "private" 
-#   description = "VPC network & subnet name"
-# }
-
-# variable "public_cidr" {
-#   type        = list(string)
-#   default     = ["192.168.10.0/24"]
-#   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
-# }
-
-# variable "private_cidr" {
-#   type        = list(string)
-#   default     = ["192.168.20.0/24"]
-#   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+#   description = "Location of SSH public key."
 # }
 
 # variable "nat-image_family" {
@@ -136,27 +135,6 @@ variable ssh_public_key {
 #   description = "Public ip address, for nat-instance"
 # }
 
-# ### Object-storage vars
-# variable bucket_name {
-#   type        = string
-#   description = "Name bucket for object storage"
-# }
-
-# variable max_size-bucket {
-#   type        = number
-#   description = "The size of bucket, in bytes."
-# }
-
-# variable default_storage_class {
-#   type        = string
-#   default     = "STANDARD"
-#   description = "Storage class which is used for storing objects by default. Available values are: STANDARD, COLD, ICE. Default is STANDARD."
-# }
-
-# variable anonymous_access {
-#   type          = map(bool) 
-#   description = "Provides various access to objects." 
-# }
 
 # variable storage_object {
 #   type          = map(string)
@@ -200,21 +178,4 @@ variable ssh_public_key {
 # variable "deploy_policy" {
 #   type = map(number)
 #   description = "The deployment policy of the instance group."
-# }
-
-# // KMS vars 
-# variable "kms-key_name" {
-#   type        = string  
-#   description = "Name of the key." 
-# } 
-
-# variable "algorithm" {
-#   type        = string  
-#   description = "Encryption algorithm to be used with a new key version, generated with the next rotation. The default value is AES_128." 
-# } 
-
-# variable "rotation_period" {
-#   type        = string
-#   default     = "8760h" // equal to 1 year
-#   description = "Interval between automatic rotations. To disable automatic rotation, omit this parameter."
 # }
