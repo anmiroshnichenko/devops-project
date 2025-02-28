@@ -105,11 +105,11 @@ terraform init -backend-config="access_key=<s3_access_key>" -backend-config="sec
 ```
 
 Ожидаемый результат:
-1. Git репозиторий с тестовым приложением и Dockerfile.
-[Git репозиторий](https://github.com/anmiroshnichenko/test-app)
+1. Git репозиторий с тестовым приложением и Dockerfile.   
+[My_Git репозиторий](https://github.com/anmiroshnichenko/test-app)
 
-2. Регистри с собранным docker image. В качестве регистри может быть DockerHub или [Yandex Container Registry](https://cloud.yandex.ru/services/container-registry), созданный также с помощью terraform.
-[Registry](https://hub.docker.com/repository/docker/aleksandm/test-app/tags)
+2. Регистри с собранным docker image. В качестве регистри может быть DockerHub или Yandex Container Registry, созданный также с помощью terraform.    
+[My_registry](https://hub.docker.com/repository/docker/aleksandm/test-app/tags)
 
 ---
 ### Подготовка cистемы мониторинга и деплой приложения
