@@ -1,0 +1,20 @@
+[kube_control_plane]
+%{~ for i in [kube_control_plane] ~}
+%{if length(i["network_interface"][0]["nat_ip_address"]) > 0}
+  ${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]} 
+  %{else}
+  ${i["name"]}   ansible_host=${i["network_interface"][0]["ip_address"]} 
+  %{endif}
+%{~ endfor ~}
+
+[etcd:children]
+  kube_control_plane
+
+[kube_node]
+%{~ for i in kube_node ~}
+%{if length(i["network_interface"][0]["nat_ip_address"]) > 0}
+  ${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]} 
+  %{else}
+  ${i["name"]}   ansible_host=${i["network_interface"][0]["ip_address"]}
+  %{endif}
+%{~ endfor ~}

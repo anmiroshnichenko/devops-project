@@ -55,21 +55,72 @@ variable "subnet-b_cidr" {
   default     = ["192.168.20.0/24"]
   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
 }
+
+variable "environment" {
+  type        = string
+  default     = "dev"  
+  description = "Environment for virtual machine names"
+}
 //===============================================================================
-# variable "environment" {
-#   type        = string
-#   default     = "dev"  
-#   description = "Environment for virtual machine names"
-# }
+// Variable for virtual machine resources
+variable "image_ubuntu" {
+  type        = string
+  default     = "ubuntu-2204-lts"
+  description = "OS image for virtual machine"
+}
 
-# variable username {
-#   type = string
-# }
+variable username {
+  type = string
+}
 
-# variable ssh_public_key {
-#   type        = string
-#   description = "Location of SSH public key."
-# }
+variable ssh_public_key {
+  type        = string
+  description = "Location of SSH public key."
+}
+
+variable "vm_platform_id" {
+  type        = string
+  default     = "standard-v1"
+  description = "Yandex Compute Cloud provides platform "
+}
+
+variable "vm_scheduling_policy" {
+  type        = bool 
+  default     = true
+  description = "Indicates whether the instance is preemptible. The values are true and false."
+}
+
+variable "nat_network_interface" {
+  type        = bool 
+  default     = true
+  description = "Provide a public address, for nat-instance"
+}
+
+variable "vm_count" {
+  type = number  
+}
+
+variable "vms_resources" {
+  type        = map(map(number))
+  description = "All resources for virtual machine"
+}
+
+variable "disk_type" {
+  type = string
+  default = "network-hdd"
+}
+
+variable "role_0" {
+  type        = string
+  default     = "master"  
+  description = "Environment for virtual machine names"
+}
+
+variable "role_1" {
+  type        = string
+  default     = "worker"  
+  description = "Environment for virtual machine names"
+}
 
 # variable "nat-image_family" {
 #   type        = string
@@ -77,51 +128,14 @@ variable "subnet-b_cidr" {
 #   description = "OS image for virtual machine"
 # }
 
-# variable "image_ubuntu" {
-#   type        = string
-#   default     = "ubuntu-2204-lts"
-#   description = "OS image for virtual machine"
-# }
 
-# variable "role_0" {
-#   type        = string
-#   default     = "nat"  
-#   description = "Environment for virtual machine names"
-# }
 
-# variable "role_1" {
-#   type        = string
-#   default     = "vm-1"  
-#   description = "Environment for virtual machine names"
-# }
+
 
 # variable "role_2" {
 #   type        = string
 #   default     = "vm-2"  
 #   description = "Environment for virtual machine names"
-# }
-# variable "vm-nat_platform_id" {
-#   type        = string
-#   default     = "standard-v1"
-#   description = "Yandex Compute Cloud provides platform "
-# }
-
-# #single map variable for virtual machine resources
-# variable "vms_resources" {
-#   type        = map(map(number))
-#   description = "All resources for virtual machine"
-# }
-
-# variable "vm_scheduling_policy" {
-#   type        = bool 
-#   default     = true
-#   description = "Indicates whether the instance is preemptible. The values are true and false."
-# }
-
-# variable "vm-nat_network_interface_nat" {
-#   type        = bool 
-#   default     = true
-#   description = "Provide a public address, for nat-instance"
 # }
 
 # variable "vm_network_interface_nat" {
@@ -145,12 +159,6 @@ variable "subnet-b_cidr" {
 # variable ig_name {
 #   type        = string
 #   description = "The name of the instance group"
-# }
-
-# variable "vm-ig_platform" {
-#   type        = string
-#   default     = "standard-v1"
-#   description = "Yandex Compute Cloud provides platform "
 # }
 
 # variable "vms-ig_resources" {
@@ -179,3 +187,4 @@ variable "subnet-b_cidr" {
 #   type = map(number)
 #   description = "The deployment policy of the instance group."
 # }
+

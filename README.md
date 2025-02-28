@@ -96,10 +96,20 @@ terraform init -backend-config="access_key=<s3_access_key>" -backend-config="sec
 2. Альтернативный вариант:  
    а. Используйте любой другой код, главное, чтобы был самостоятельно создан Dockerfile.
 
-Ожидаемый результат:
+```
+ docker build -t test-app  .
+ docker images
+ docker image tag 622fa61283a8  aleksandm/test-app:0.1.0
+ docker login -u aleksandm
+ docker push aleksandm/test-app:0.1.0
+```
 
+Ожидаемый результат:
 1. Git репозиторий с тестовым приложением и Dockerfile.
+[Git репозиторий](https://github.com/anmiroshnichenko/test-app)
+
 2. Регистри с собранным docker image. В качестве регистри может быть DockerHub или [Yandex Container Registry](https://cloud.yandex.ru/services/container-registry), созданный также с помощью terraform.
+[Registry](https://hub.docker.com/repository/docker/aleksandm/test-app/tags)
 
 ---
 ### Подготовка cистемы мониторинга и деплой приложения
