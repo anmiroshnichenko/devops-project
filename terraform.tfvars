@@ -3,18 +3,20 @@ vpc_name = "dev_vpc"
 vm_count = 2
 ssh_public_key   = "/home/miroshnichenko_an/.ssh/id_rsa.pub"
 username         = "miroshnichenko_an"
-
+disk_type = "network-ssd"
 vms_resources = {
      master ={
        cores = 2
-       memory = 1
+       memory = 2
+       disk = 10
        core_fraction = 5        
     },
      worker = {
        cores = 2
        memory = 2
+       disk = 15
        core_fraction = 5        
-     }
+    }
 }
 
 # vm-nat_ip_address = "192.168.10.254"

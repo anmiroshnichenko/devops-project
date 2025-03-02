@@ -26,6 +26,8 @@ resource "yandex_compute_instance" "master" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu.image_id
+      type     = var.disk_type
+      size = var.vms_resources["master"]["disk"]
     }
   }
   
@@ -62,6 +64,7 @@ resource "yandex_compute_instance" "worker" {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu.image_id
       type     = var.disk_type
+      size = var.vms_resources["worker"]["disk"]
     }
   }
   

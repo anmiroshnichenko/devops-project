@@ -5,7 +5,7 @@ resource "local_file" "hosts_templatefile" {
    kube_node = yandex_compute_instance.worker      
    } )
 
-  filename = "${abspath(path.module)}/iventory.ini"
+  filename = "${abspath(path.module)}/kubespray/inventory/mycluster/inventory.ini"
 }
 
 variable "web_provision" {
