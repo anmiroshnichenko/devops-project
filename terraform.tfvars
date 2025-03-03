@@ -4,17 +4,18 @@ vm_count = 2
 ssh_public_key   = "/home/miroshnichenko_an/.ssh/id_rsa.pub"
 username         = "miroshnichenko_an"
 disk_type = "network-ssd"
+# vm_scheduling_policy = false
 vms_resources = {
      master ={
        cores = 2
-       memory = 2
-       disk = 10
+       memory = 4
+       disk = 15
        core_fraction = 5        
     },
      worker = {
-       cores = 2
-       memory = 2
-       disk = 15
+       cores = 4
+       memory = 4
+       disk = 20
        core_fraction = 5        
     }
 }

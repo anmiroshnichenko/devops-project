@@ -73,6 +73,16 @@ terraform init -backend-config="access_key=<s3_access_key>" -backend-config="sec
    а. При помощи Terraform подготовить как минимум 3 виртуальных машины Compute Cloud для создания Kubernetes-кластера. Тип виртуальной машины следует выбрать самостоятельно с учётом требовании к производительности и стоимости. Если в дальнейшем поймете, что необходимо сменить тип инстанса, используйте Terraform для внесения изменений.  
    б. Подготовить [ansible](https://www.ansible.com/) конфигурации, можно воспользоваться, например [Kubespray](https://kubernetes.io/docs/setup/production-environment/tools/kubespray/)  
    в. Задеплоить Kubernetes на подготовленные ранее инстансы, в случае нехватки каких-либо ресурсов вы всегда можете создать их при помощи Terraform.
+```
+sudo apt install git python3 python3-pip python3-venv -y
+git clone https://github.com/kubernetes-sigs/kubespray.git
+cd kubespray
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp -rfp inventory/sample inventory/mycluster
+ansible-playbook -i inventory/mycluster/inventory.ini cluster.yml -b -v
+```
 2. Альтернативный вариант: воспользуйтесь сервисом [Yandex Managed Service for Kubernetes](https://cloud.yandex.ru/services/managed-kubernetes)  
   а. С помощью terraform resource для [kubernetes](https://registry.terraform.io/providers/yandex-cloud/yandex/latest/docs/resources/kubernetes_cluster) создать **региональный** мастер kubernetes с размещением нод в разных 3 подсетях      
   б. С помощью terraform resource для [kubernetes node group](https://registry.terraform.io/providers/yandex-cloud/yandex/latest/docs/resources/kubernetes_node_group)
@@ -109,7 +119,7 @@ terraform init -backend-config="access_key=<s3_access_key>" -backend-config="sec
 [My_Git репозиторий](https://github.com/anmiroshnichenko/test-app)
 
 2. Регистри с собранным docker image. В качестве регистри может быть DockerHub или Yandex Container Registry, созданный также с помощью terraform.    
-[My_registry](https://hub.docker.com/repository/docker/aleksandm/test-app/tags)
+[My_registry](https://hub.docker.com/r/aleksandm/test-app/tags)
 
 ---
 ### Подготовка cистемы мониторинга и деплой приложения
@@ -119,8 +129,21 @@ terraform init -backend-config="access_key=<s3_access_key>" -backend-config="sec
 
 Цель:
 1. Задеплоить в кластер [prometheus](https://prometheus.io/), [grafana](https://grafana.com/), [alertmanager](https://github.com/prometheus/alertmanager), [экспортер](https://github.com/prometheus/node_exporter) основных метрик Kubernetes.
+```
+# Create the namespace and CRDs, and then wait for them to be available before creating the remaining resources
+# Note that due to some CRD size we are using kubectl server-side apply feature which is generally available since kubernetes 1.22.
+# If you are using previous kubernetes versions this feature may not be available and you would need to use kubectl create instead.
+kubectl apply --server-side -f manifests/setup
+kubectl wait \
+	--for condition=Established \
+	--all CustomResourceDefinition \
+	--namespace=monitoring
+kubectl apply -f manifests/
+```
 2. Задеплоить тестовое приложение, например, [nginx](https://www.nginx.com/) сервер отдающий статическую страницу.
-
+```
+helm install test-app  ./test-app-chart -n dev  --create-namespace
+```
 Способ выполнения:
 1. Воспользоваться пакетом [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus), который уже включает в себя [Kubernetes оператор](https://operatorhub.io/) для [grafana](https://grafana.com/), [prometheus](https://prometheus.io/), [alertmanager](https://github.com/prometheus/alertmanager) и [node_exporter](https://github.com/prometheus/node_exporter). Альтернативный вариант - использовать набор helm чартов от [bitnami](https://github.com/bitnami/charts/tree/main/bitnami).
 
