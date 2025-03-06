@@ -155,7 +155,7 @@ helm install test-app  ./test-app-chart -n dev-tools  --create-namespace
 
 Ожидаемый результат:
 1. Git репозиторий с конфигурационными файлами для настройки Kubernetes.  
-[Git репозиторий](https://github.com/anmiroshnichenko/devops-project)
+[Git репозиторий](https://github.com/anmiroshnichenko/devops-project/tree/main/kubespray)
 2. Http доступ на 80 порту к web интерфейсу grafana.
 [Grafana](http://grafana.zem.digital/)
 3. Дашборды в grafana отображающие состояние Kubernetes кластера.
