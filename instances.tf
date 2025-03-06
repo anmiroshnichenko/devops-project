@@ -69,7 +69,7 @@ resource "yandex_compute_instance" "worker" {
   }
   
   scheduling_policy {    
-    preemptible = var.vm_scheduling_policy
+    preemptible = var.vm_scheduling_policy    
   }
   
   network_interface {

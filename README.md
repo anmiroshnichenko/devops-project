@@ -90,8 +90,10 @@ ansible-playbook -i inventory/mycluster/inventory.ini cluster.yml -b -v
 Ожидаемый результат:
 
 1. Работоспособный Kubernetes кластер.
-2. В файле `~/.kube/config` находятся данные для доступа к кластеру.
-3. Команда `kubectl get pods --all-namespaces` отрабатывает без ошибок.
+2. В файле `~/.kube/config` находятся данные для доступа к кластеру.  
+![image](screenshots/2_1.jpg)
+3. Команда `kubectl get pods --all-namespaces` отрабатывает без ошибок.  
+![image](screenshots/2_2.jpg)
 
 ---
 ### Создание тестового приложения
