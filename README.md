@@ -142,6 +142,8 @@ kubectl wait \
 	--namespace=monitoring
 kubectl apply -f manifests/
 ```
+![image](screenshots/3_1.jpg)
+
 2. Задеплоить тестовое приложение, например, [nginx](https://www.nginx.com/) сервер отдающий статическую страницу.
 ```
 helm install test-app  ./test-app-chart -n dev-tools  --create-namespace
@@ -152,10 +154,14 @@ helm install test-app  ./test-app-chart -n dev-tools  --create-namespace
 2. Если на первом этапе вы не воспользовались [Terraform Cloud](https://app.terraform.io/), то задеплойте и настройте в кластере [atlantis](https://www.runatlantis.io/) для отслеживания изменений инфраструктуры. Альтернативный вариант 3 задания: вместо Terraform Cloud или atlantis настройте на автоматический запуск и применение конфигурации terraform из вашего git-репозитория в выбранной вами CI-CD системе при любом комите в main ветку. Предоставьте скриншоты работы пайплайна из CI/CD системы.
 
 Ожидаемый результат:
-1. Git репозиторий с конфигурационными файлами для настройки Kubernetes.
+1. Git репозиторий с конфигурационными файлами для настройки Kubernetes.  
+[Git репозиторий](https://github.com/anmiroshnichenko/devops-project)
 2. Http доступ на 80 порту к web интерфейсу grafana.
+[Grafana](http://grafana.zem.digital/)
 3. Дашборды в grafana отображающие состояние Kubernetes кластера.
+![image](screenshots/3_2.jpg)
 4. Http доступ на 80 порту к тестовому приложению.
+[Test-app](http://test-app.zem.digital/)
 ---
 ### Установка и настройка CI/CD
 
@@ -178,9 +184,10 @@ kubectl apply -f deployment.yaml
 Ожидаемый результат:
 
 1. Интерфейс ci/cd сервиса доступен по http.
+[Jenkins](http://jenkins.zem.digital/)
 2. При любом коммите в репозиторие с тестовым приложением происходит сборка и отправка в регистр Docker образа.
 3. При создании тега (например, v1.0.0) происходит сборка и отправка с соответствующим label в регистри, а также деплой соответствующего Docker образа в кластер Kubernetes.
-
+![image](screenshots/4_1.jpg)
 ---
 ## Что необходимо для сдачи задания?
 
