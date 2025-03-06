@@ -166,6 +166,13 @@ helm install test-app  ./test-app-chart -n dev  --create-namespace
 
 Можно использовать [teamcity](https://www.jetbrains.com/ru-ru/teamcity/), [jenkins](https://www.jenkins.io/), [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/) или GitHub Actions.
 
+```
+kubectl create namespace devops-tools
+kubectl apply -f service-account.yaml
+kubectl apply -f secret.yaml
+kubectl apply -f deployment.yaml
+```
+
 Ожидаемый результат:
 
 1. Интерфейс ci/cd сервиса доступен по http.

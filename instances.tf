@@ -83,3 +83,5 @@ resource "yandex_compute_instance" "worker" {
     serial-port-enable = 1
   }  
 }
+
+

@@ -8,8 +8,3 @@ resource "local_file" "hosts_templatefile" {
   filename = "${abspath(path.module)}/kubespray/inventory/mycluster/inventory.ini"
 }
 
-variable "web_provision" {
-  type    = bool
-  default = true
-  description="ansible provision switch variable"
-}

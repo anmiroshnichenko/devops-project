@@ -122,6 +122,11 @@ variable "role_1" {
   description = "Environment for virtual machine names"
 }
 
+variable "role_2" {
+  type        = string
+  default     = "jenkins"  
+  description = "Environment for virtual machine names"
+}
 # variable "nat-image_family" {
 #   type        = string
 #   default     = "nat-instance-ubuntu-2204"
