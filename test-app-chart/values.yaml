@@ -10,7 +10,7 @@ frontend:
     enable: true
     className: "nginx"     
     hosts:
-      - host: qa-my-app.ru
+      - host: test-app.zem.digital
         paths:
           - path: /
             pathType: Prefix
@@ -20,15 +20,3 @@ frontend:
     type: ClusterIP
     port: 80
     targetPort: 80  
-
-backend:
-  image:
-    repository: praqma/network-multitool
-    tag: "latest"
-    pullPolicy: "IfNotPresent"
-  replicaCount: 1
-
-  service:
-    type: ClusterIP
-    port: 9002
-    targetPort: 80 
