@@ -1,7 +1,7 @@
 vpc_name = "dev_vpc"
 
 vm_count = 2
-ssh_public_key   = "/home/miroshnichenko_an/.ssh/id_rsa.pub"
+ssh_public_key   = "~/.ssh/id_rsa.pub"
 username         = "miroshnichenko_an"
 disk_type = "network-ssd"
 vm_scheduling_policy = false

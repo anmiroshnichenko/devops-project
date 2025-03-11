@@ -3,7 +3,7 @@ frontend:
     repository: aleksandm/test-app
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    # tag: "1.21.0"  
+    tag: "latest"  
   replicaCount: 1
 
   ingress:

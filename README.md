@@ -147,7 +147,13 @@ kubectl apply -f manifests/
 
 2. Задеплоить тестовое приложение, например, [nginx](https://www.nginx.com/) сервер отдающий статическую страницу.
 ```
-helm install test-app  ./test-app-chart -n dev-tools  --create-namespace
+helm upgrade --install test-app  ./test-app-chart -n devops-tools  --create-namespace
+helm repo add app-chart  https://anmiroshnichenko.github.io/helmchartrepository/
+helm repo list 
+helm search repo app-chart
+helm upgrade --install test-app  app-chart/app-chart  -n devops-tools
+helm upgrade --install test-app  app-chart/app-chart  -n devops-tools  --set   frontend.image.tag=v1.0.4
+
 ```
 Способ выполнения:
 1. Воспользоваться пакетом [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus), который уже включает в себя [Kubernetes оператор](https://operatorhub.io/) для [grafana](https://grafana.com/), [prometheus](https://prometheus.io/), [alertmanager](https://github.com/prometheus/alertmanager) и [node_exporter](https://github.com/prometheus/node_exporter). Альтернативный вариант - использовать набор helm чартов от [bitnami](https://github.com/bitnami/charts/tree/main/bitnami).
